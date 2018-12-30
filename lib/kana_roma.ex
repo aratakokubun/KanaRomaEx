@@ -23,25 +23,26 @@ defmodule KanaRoma do
   def kana2roma(kana) do
     kana
     |> kana2roma(0, @max_kana_len, [])
-    |> Enum.map(&(&1.roma))
+    |> Enum.map(& &1.roma)
     |> Enum.join()
   end
 
-  @spec kana2roma(binary, integer, integer, list(Pair.pair)) :: list(Pair.pair)
+  @spec kana2roma(binary, integer, integer, list(Pair.pair())) :: list(Pair.pair())
   def kana2roma(kana, index, length, converted) do
     if String.length(kana) - 1 < index do
       converted
     else
-      with sliced_kana <- String.slice(kana, index..index + length) do
+      with sliced_kana <- String.slice(kana, index..(index + length)) do
         length
-        |> Table.get_kana_table
+        |> Table.get_kana_table()
         |> Enum.find(&(&1.kana == sliced_kana))
         |> append_sliced_kana(kana, index, length, sliced_kana, converted)
       end
     end
   end
 
-  @spec append_sliced_kana(Pair.pair, binary, integer, integer, binary, list(Pair.pair)) :: list(Pair.pair)
+  @spec append_sliced_kana(Pair.pair(), binary, integer, integer, binary, list(Pair.pair())) ::
+          list(Pair.pair())
   defp append_sliced_kana(nil, kana, index, 0, sliced_kana, converted) do
     with appended <- converted ++ [%Pair{kana: sliced_kana, roma: sliced_kana}] do
       kana2roma(kana, index + 1, @max_kana_len, appended)
@@ -72,24 +73,25 @@ defmodule KanaRoma do
   def roma2kana(roma) do
     roma
     |> roma2kana(0, @max_roma_len, [])
-    |> Enum.map(&(&1.kana))
+    |> Enum.map(& &1.kana)
     |> Enum.join()
   end
 
-  @spec roma2kana(binary, integer, integer, list(Pair.pair)) :: list(Pair.pair)
+  @spec roma2kana(binary, integer, integer, list(Pair.pair())) :: list(Pair.pair())
   def roma2kana(roma, index, length, converted) do
     if String.length(roma) - 1 < index do
       converted
     else
-      with sliced_roma <- String.slice(roma, index..index + length) do
-        Table.get_combined_table
+      with sliced_roma <- String.slice(roma, index..(index + length)) do
+        Table.get_combined_table()
         |> Enum.find(&(&1.roma == sliced_roma))
         |> append_sliced_roma(roma, index, length, sliced_roma, converted)
       end
     end
   end
 
-  @spec append_sliced_roma(Pair.pair, binary, integer, integer, binary, list(Pair.pair)) :: list(Pair.pair)
+  @spec append_sliced_roma(Pair.pair(), binary, integer, integer, binary, list(Pair.pair())) ::
+          list(Pair.pair())
   defp append_sliced_roma(nil, roma, index, 0, sliced_roma, converted) do
     with appended <- converted ++ [%Pair{kana: sliced_roma, roma: sliced_roma}] do
       roma2kana(roma, index + 1, @max_roma_len, appended)

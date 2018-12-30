@@ -25,14 +25,22 @@ defmodule KanaRomaTest do
   end
 
   test "non kana characters to original" do
-    assert KanaRoma.kana2roma("ka", 0, 2, []) == [%Pair{kana: "k", roma: "k"}, %Pair{kana: "a", roma: "a"}]
-    assert KanaRoma.kana2roma("1",  0, 2, []) == [%Pair{kana: "1", roma: "1"}]
-    assert KanaRoma.kana2roma("ア",  0, 2, []) == [%Pair{kana: "ア", roma: "ア"}]
-    assert KanaRoma.kana2roma("Ａ",  0, 2, []) == [%Pair{kana: "Ａ", roma: "Ａ"}]
+    assert KanaRoma.kana2roma("ka", 0, 2, []) == [
+             %Pair{kana: "k", roma: "k"},
+             %Pair{kana: "a", roma: "a"}
+           ]
+
+    assert KanaRoma.kana2roma("1", 0, 2, []) == [%Pair{kana: "1", roma: "1"}]
+    assert KanaRoma.kana2roma("ア", 0, 2, []) == [%Pair{kana: "ア", roma: "ア"}]
+    assert KanaRoma.kana2roma("Ａ", 0, 2, []) == [%Pair{kana: "Ａ", roma: "Ａ"}]
   end
 
   test "kana characters converted as specified index and length" do
-    assert KanaRoma.kana2roma("びゃ", 0, 0, []) == [%Pair{kana: "び", roma: "bi"}, %Pair{kana: "ゃ", roma: "xya"}]
+    assert KanaRoma.kana2roma("びゃ", 0, 0, []) == [
+             %Pair{kana: "び", roma: "bi"},
+             %Pair{kana: "ゃ", roma: "xya"}
+           ]
+
     assert KanaRoma.kana2roma("びゃ", 0, 1, []) == [%Pair{kana: "びゃ", roma: "bya"}]
     assert KanaRoma.kana2roma("びゃ", 1, 2, []) == [%Pair{kana: "ゃ", roma: "xya"}]
   end
@@ -63,16 +71,28 @@ defmodule KanaRomaTest do
   end
 
   test "characters which has no corresponding kana to original" do
-    assert KanaRoma.roma2kana("か",  0, 3, []) == [%Pair{kana: "か", roma: "か"}]
-    assert KanaRoma.roma2kana("1",  0, 3, []) == [%Pair{kana: "1", roma: "1"}]
-    assert KanaRoma.roma2kana("ア",  0, 3, []) == [%Pair{kana: "ア", roma: "ア"}]
-    assert KanaRoma.roma2kana("Ａ",  0, 3, []) == [%Pair{kana: "Ａ", roma: "Ａ"}]
-    assert KanaRoma.roma2kana("xh",  0, 3, []) == [%Pair{kana: "x", roma: "x"}, %Pair{kana: "h", roma: "h"}]
+    assert KanaRoma.roma2kana("か", 0, 3, []) == [%Pair{kana: "か", roma: "か"}]
+    assert KanaRoma.roma2kana("1", 0, 3, []) == [%Pair{kana: "1", roma: "1"}]
+    assert KanaRoma.roma2kana("ア", 0, 3, []) == [%Pair{kana: "ア", roma: "ア"}]
+    assert KanaRoma.roma2kana("Ａ", 0, 3, []) == [%Pair{kana: "Ａ", roma: "Ａ"}]
+
+    assert KanaRoma.roma2kana("xh", 0, 3, []) == [
+             %Pair{kana: "x", roma: "x"},
+             %Pair{kana: "h", roma: "h"}
+           ]
   end
 
   test "roma characters converted as specified index and length" do
-    assert KanaRoma.roma2kana("xya", 0, 0, []) == [%Pair{kana: "x", roma: "x"}, %Pair{kana: "や", roma: "ya"}]
-    assert KanaRoma.roma2kana("xya", 0, 1, []) == [%Pair{kana: "x", roma: "x"}, %Pair{kana: "や", roma: "ya"}]
+    assert KanaRoma.roma2kana("xya", 0, 0, []) == [
+             %Pair{kana: "x", roma: "x"},
+             %Pair{kana: "や", roma: "ya"}
+           ]
+
+    assert KanaRoma.roma2kana("xya", 0, 1, []) == [
+             %Pair{kana: "x", roma: "x"},
+             %Pair{kana: "や", roma: "ya"}
+           ]
+
     assert KanaRoma.roma2kana("xya", 0, 2, []) == [%Pair{kana: "ゃ", roma: "xya"}]
     assert KanaRoma.roma2kana("xya", 1, 2, []) == [%Pair{kana: "や", roma: "ya"}]
   end
