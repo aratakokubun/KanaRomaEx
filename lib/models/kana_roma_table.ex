@@ -55,6 +55,11 @@ defmodule Models.KanaRomaTable do
               %KanaRomaPair{kana: "ぁ", roma: "xa"}, %KanaRomaPair{kana: "ぃ", roma: "xi"}, %KanaRomaPair{kana: "ぅ", roma: "xu"}, %KanaRomaPair{kana: "ぇ", roma: "xe"}, %KanaRomaPair{kana: "ぉ", roma: "xo"},
               %KanaRomaPair{kana: "ゃ", roma: "xya"}, %KanaRomaPair{kana: "ゅ", roma: "xyu"}, %KanaRomaPair{kana: "ょ", roma: "xyo"}, %KanaRomaPair{kana: "っ", roma: "xtsu"}]
 
+  @doc """
+  Return a list of KanaRomaPair which has a kana of specified length characters.
+  Length must be one of [0, 1, 2].
+  """
+  @spec get_kana_table(integer) :: list(KanaRomaPair.pair)
   def get_kana_table(2) do
     @tri_table
   end
@@ -67,6 +72,10 @@ defmodule Models.KanaRomaTable do
     @uni_table
   end
 
+  @doc """
+  Return a list of KanaRomaPair which has a kana of any length characters.
+  """
+  @spec get_combined_table :: list(KanaRomaPair.pair)
   def get_combined_table do
     @tri_table ++ @bi_table ++ @uni_table
   end

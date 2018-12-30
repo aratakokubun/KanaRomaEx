@@ -6,7 +6,7 @@ defmodule Models.KanaRomaPair do
   defstruct kana: 'かな', roma: 'roma'
 
   @typedoc """
-      Type that represents KanaRomaPair struct with :kana as String and :roma as String.
+      Type that represents KanaRomaPair struct with :kana as binary and :roma as binary.
   """
-  @type pair :: %Models.KanaRomaPair{kana: String, roma: String}
+  @type pair :: %Models.KanaRomaPair{kana: binary, roma: binary}
 end
