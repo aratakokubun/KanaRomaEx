@@ -1,4 +1,5 @@
 [![Build Status](https://travis-ci.org/aratakokubun/KanaRomaEx.svg?branch=master)](https://travis-ci.org/aratakokubun/KanaRomaEx)
+[![hex.pm version](https://img.shields.io/hexpm/v/kana_roma.svg)](https://hex.pm/packages/kana_roma)
 
 # KanaRoma
 
