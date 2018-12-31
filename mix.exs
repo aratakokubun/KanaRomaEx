@@ -11,7 +11,7 @@ defmodule KanaRoma.MixProject do
       package: [
         maintainers: ["kkbnart"],
         licenses: ["MIT"],
-        lionks: %{"GitHub" => "https://github.com/aratakokubun"}
+        links: %{"GitHub" => "https://github.com/aratakokubun"}
       ],
       deps: deps()
     ]
