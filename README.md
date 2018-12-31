@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/aratakokubun/KanaRomaEx.svg?branch=master)](https://travis-ci.org/aratakokubun/KanaRomaEx)
+
 # KanaRoma
 
 Library to convert Japanese characters between kana-moji and roman-moji.
